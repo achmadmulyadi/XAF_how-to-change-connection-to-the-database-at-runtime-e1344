@@ -10,23 +10,15 @@ namespace RuntimeDbChooser.Module.BusinessObjects {
 	}
 	[DomainComponent]
 	public class CustomLogonParametersForStandardAuthentication : AuthenticationStandardLogonParameters, IDatabaseNameParameter {
-		private string databaseName = MSSqlServerChangeDatabaseHelper.Databases.Split(';')[0];
-		[ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
-		public string DatabaseName {
-			get { return databaseName; }
-			set { databaseName = value; }
-		}
-	}
+        [ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
+        public string DatabaseName { get; set; } = MSSqlServerChangeDatabaseHelper.Databases.Split(';')[0];
+    }
 	[DomainComponent]
 	public class CustomLogonParametersForActiveDirectoryAuthentication : IDatabaseNameParameter {
-		private string databaseName = MSSqlServerChangeDatabaseHelper.Databases.Split(';')[0];
 
-		[ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
-		public string DatabaseName {
-			get { return databaseName; }
-			set { databaseName = value; }
-		}
-	}
+        [ModelDefault("PredefinedValues", MSSqlServerChangeDatabaseHelper.Databases)]
+        public string DatabaseName { get; set; } = MSSqlServerChangeDatabaseHelper.Databases.Split(';')[0];
+    }
 	public class MSSqlServerChangeDatabaseHelper {
 		public const string Databases = "E1344_DB1;E1344_DB2";
 		public static void UpdateDatabaseName(XafApplication application, string databaseName) {
